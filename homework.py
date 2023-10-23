@@ -86,7 +86,7 @@ class SportsWalking(Training):
         mean_speed_ms = self.get_mean_speed() * coef_kmh_to_ms
         height_m = self.height / 100
 
-        CALORIES_WEIGHT_MULTIPLIER = 18
+        CALORIES_WEIGHT_MULTIPLIER = 0.035
         CALORIES_SPEED_MULTIPLIER = 1.79
 
         return ((CALORIES_WEIGHT_MULTIPLIER * self.weight
@@ -121,7 +121,14 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    pass
+    workout_types = {
+        'SWM': Swimming,
+        'RUN': Running,
+        'WLK': SportsWalking
+    }
+    if workout_type in workout_types:
+        workout = workout_types[workout_type](*data)
+        return workout
 
 
 def main(training: Training) -> None:
