@@ -45,7 +45,7 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         raise NotImplementedError(
-            "Не реализован метод get_spent_calories в дочернем классе "
+            f"Не реализован метод get_spent_caloriesв дочернем классе "
             f"{type(self).__name__}"
         )
 
@@ -77,7 +77,7 @@ class Running(Training):
 @dataclass
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
-    height: int = 0
+    height: int
 
     CALORIES_WEIGHT_MULTIPLIER: ClassVar[float] = 0.035
     CALORIES_SPEED_MULTIPLIER: ClassVar[float] = 0.029
@@ -98,8 +98,8 @@ class SportsWalking(Training):
 @dataclass
 class Swimming(Training):
     """Тренировка: плавание."""
-    length_pool: int = 0
-    count_pool: int = 0
+    length_pool: int
+    count_pool: int
 
     LEN_STEP: ClassVar[float] = 1.38
     CALORIES_MEAN_SPEED_MULTIPLIER: ClassVar[int] = 2
